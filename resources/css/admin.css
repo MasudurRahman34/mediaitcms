@@ -1,0 +1,133 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../**/*.tsx';
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --color-navy-50: #eef2fb;
+  --color-navy-100: #dae2f5;
+  --color-navy-200: #b6c5e9;
+  --color-navy-300: #8ba3d9;
+  --color-navy-400: #5f7cc2;
+  --color-navy-500: #3d5aa6;
+  --color-navy-600: #2b4285;
+  --color-navy-700: #1c3169;
+  --color-navy-800: #0a1c48;
+  --color-navy-900: #09215e;
+  --color-navy-950: #0d1220;
+
+  --color-midnight: #0d1220;
+  --color-near-black: #0e0f11;
+  --color-accent: #3b82f6;
+  --color-accent-soft: #60a5fa;
+  --color-accent-deep: #1d4ed8;
+  --color-ink: #f8fafc;
+
+  --color-panel: #0f1729;
+  --color-panel-raised: #141f36;
+  --color-line: #1e2b45;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-midnight font-sans text-ink antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .admin-input {
+    @apply border-line w-full rounded-lg border bg-near-black/60 px-3.5 py-2.5 text-sm text-ink transition placeholder:text-ink/35 focus:border-accent/70 focus:bg-near-black/80 focus:outline-none;
+  }
+
+  .admin-label {
+    @apply mb-1.5 block text-xs font-medium tracking-wide text-ink/60 uppercase;
+  }
+
+  .admin-card {
+    @apply border-line bg-panel rounded-xl border;
+  }
+
+  .admin-table {
+    @apply w-full text-left text-sm;
+  }
+
+  .admin-table thead th {
+    @apply border-line border-b px-4 py-3 text-xs font-semibold tracking-wider text-ink/50 uppercase;
+  }
+
+  .admin-table tbody td {
+    @apply border-line/70 border-b px-4 py-3.5 align-middle;
+  }
+
+  .admin-table tbody tr {
+    @apply transition hover:bg-white/[0.025];
+  }
+
+  .scrollbar-slim::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-slim::-webkit-scrollbar-thumb {
+    background: #22314d;
+    border-radius: 999px;
+  }
+}
+
+/* TipTap editor surface */
+.tiptap {
+  @apply min-h-[22rem] px-5 py-4 text-sm leading-relaxed text-ink/85 focus:outline-none;
+}
+.tiptap > * + * {
+  @apply mt-3;
+}
+.tiptap h2 {
+  @apply mt-6 text-lg font-semibold text-ink;
+}
+.tiptap h3 {
+  @apply mt-5 text-base font-semibold text-ink;
+}
+.tiptap ul {
+  @apply list-disc pl-6;
+}
+.tiptap ol {
+  @apply list-decimal pl-6;
+}
+.tiptap blockquote {
+  @apply border-l-2 border-accent/60 pl-4 text-ink/70 italic;
+}
+.tiptap a {
+  @apply text-accent-soft underline underline-offset-2;
+}
+.tiptap img {
+  @apply rounded-lg;
+}
+.tiptap code {
+  @apply rounded bg-white/10 px-1.5 py-0.5 font-mono text-xs;
+}
+.tiptap pre {
+  @apply overflow-x-auto rounded-lg bg-black/50 p-3 font-mono text-xs;
+}
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  @apply pointer-events-none float-left h-0 text-ink/30;
+}

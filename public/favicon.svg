@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Media IT Soft">
+  <rect width="32" height="32" rx="7" fill="#09215E"/>
+  <path d="M8 25V13.2a4.2 4.2 0 0 1 8.4 0V25M15.6 25V13.2a4.2 4.2 0 0 1 8.4 0V25"
+        stroke="#F8FAFC" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
