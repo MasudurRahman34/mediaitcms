@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Media;
 use App\Models\Page;
 use App\Models\User;
 use App\Services\Pages\PagePublisher;

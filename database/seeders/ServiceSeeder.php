@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Enums\ContentStatus;
-use App\Models\Media;
 use App\Models\Service;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;

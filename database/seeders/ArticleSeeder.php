@@ -8,7 +8,6 @@ use App\Models\Article;
 use App\Models\ArticleCategory;
 use App\Models\ArticlePlacement;
 use App\Models\ArticleTag;
-use App\Models\Media;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;

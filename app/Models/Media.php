@@ -49,6 +49,14 @@ class Media extends Model
         return Storage::disk($this->disk)->url($this->path);
     }
 
+    /**
+     * Fully-qualified URL, required by Open Graph tags, JSON-LD and emails.
+     */
+    public function absoluteUrl(): string
+    {
+        return $this->toAbsolute($this->url());
+    }
+
     /** Path of a generated variant, falling back to the original. */
     public function variantUrl(string $variant): string
     {
@@ -59,6 +67,24 @@ class Media extends Model
         }
 
         return Storage::disk($this->disk)->url($path);
+    }
+
+    public function absoluteVariantUrl(string $variant): string
+    {
+        return $this->toAbsolute($this->variantUrl($variant));
+    }
+
+    /**
+     * Public disk URLs are relative (see config/filesystems.php), so meta tags
+     * need them resolved against the current request or APP_URL.
+     */
+    private function toAbsolute(string $url): string
+    {
+        if (str_starts_with($url, 'http://') || str_starts_with($url, 'https://')) {
+            return $url;
+        }
+
+        return url($url);
     }
 
     /**

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Media;
 use App\Models\TeamMember;
 use Illuminate\Database\Seeder;
 

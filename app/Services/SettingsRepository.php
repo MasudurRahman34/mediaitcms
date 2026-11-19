@@ -65,6 +65,24 @@ class SettingsRepository
         return $fallback;
     }
 
+    /**
+     * Absolute variant, for contexts that require a fully-qualified URL
+     * (Open Graph, JSON-LD, emails).
+     */
+    public function absoluteImageUrl(string $key, ?string $fallback = null): ?string
+    {
+        $mediaId = $this->get($key);
+
+        if ($mediaId) {
+            $media = Media::find($mediaId);
+            if ($media) {
+                return $media->absoluteUrl();
+            }
+        }
+
+        return $fallback;
+    }
+
     /** @return array<int, array{label: string, url: string, icon: string}> */
     public function socialLinks(): array
     {

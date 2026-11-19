@@ -18,7 +18,7 @@ class SeoManager
     {
         $title = $page?->seo_title ?: $page?->title ?: $fallbackTitle;
         $desc = $page?->seo_description ?: ($description ?: $this->settings->get('seo_default_description'));
-        $image = $page?->ogMedia?->url() ?? $this->defaultImage();
+        $image = $page?->ogMedia?->absoluteUrl() ?? $this->defaultImage();
 
         return new SeoData(
             title: $this->composeTitle($title),
@@ -31,7 +31,7 @@ class SeoManager
 
     public function article(Article $article): SeoData
     {
-        $image = $article->ogMedia?->url() ?? $article->featuredMedia?->url() ?? $this->defaultImage();
+        $image = $article->ogMedia?->absoluteUrl() ?? $article->featuredMedia?->absoluteUrl() ?? $this->defaultImage();
 
         return new SeoData(
             title: $this->composeTitle($article->seo_title ?: $article->title),
@@ -72,7 +72,7 @@ class SeoManager
             title: $this->composeTitle($service->seo_title ?: $service->title),
             description: $service->seo_description ?: $service->excerpt,
             canonical: $service->url(),
-            image: $service->ogMedia?->url() ?? $service->cover?->url() ?? $this->defaultImage(),
+            image: $service->ogMedia?->absoluteUrl() ?? $service->cover?->absoluteUrl() ?? $this->defaultImage(),
             jsonLd: [
                 $this->organization(),
                 $this->breadcrumbs([
@@ -98,7 +98,7 @@ class SeoManager
             title: $this->composeTitle($solution->seo_title ?: $solution->title),
             description: $solution->seo_description ?: $solution->intro,
             canonical: $solution->url(),
-            image: $solution->ogMedia?->url() ?? $solution->cover?->url() ?? $this->defaultImage(),
+            image: $solution->ogMedia?->absoluteUrl() ?? $solution->cover?->absoluteUrl() ?? $this->defaultImage(),
             jsonLd: [
                 $this->organization(),
                 $this->breadcrumbs([
@@ -247,8 +247,8 @@ class SeoManager
 
     public function defaultImage(): ?string
     {
-        return $this->settings->imageUrl('seo_default_image')
-            ?? $this->settings->imageUrl('logo')
+        return $this->settings->absoluteImageUrl('seo_default_image')
+            ?? $this->settings->absoluteImageUrl('logo')
             ?? asset('media/brand/og-default.svg');
     }
 

@@ -41,7 +41,10 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
+            // Relative by default so images resolve on whatever host/port the
+            // app is served from (Laragon vhost, artisan serve, staging, ...).
+            // Absolute URLs for social/meta tags are built by Media::absoluteUrl().
+            'url' => env('MEDIA_URL', '/storage'),
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
